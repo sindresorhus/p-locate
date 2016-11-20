@@ -22,11 +22,14 @@ const pLocate = require('p-locate');
 
 const files = [
 	'unicorn.png',
-	'rainbow.png',
-	getUserSpecifiedPath() //=> Promise
+	'rainbow.png', // only this one actually exists on disk
+	'pony.png'
 ];
 
-pLocate(files, file => pathExists(file), {concurrency: 1});
+pLocate(files, file => pathExists(file), {concurrency: 1}).then(foundPath => {
+	console.log(foundPath);
+	//=> 'rainbow'
+});
 ```
 
 *The above is just an example. Use [`locate-path`](https://github.com/sindresorhus/locate-path) if you need this.*
