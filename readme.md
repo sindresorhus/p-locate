@@ -26,7 +26,7 @@ const files = [
 	'pony.png'
 ];
 
-pLocate(files, file => pathExists(file), {concurrency: 1}).then(foundPath => {
+pLocate(files, file => pathExists(file)).then(foundPath => {
 	console.log(foundPath);
 	//=> 'rainbow'
 });
@@ -64,6 +64,15 @@ Default: `Infinity`<br>
 Minimum: `1`
 
 Number of concurrently pending promises returned by `tester`.
+
+##### preserveOrder
+
+Type: `boolean`<br>
+Default: `true`
+
+Preserve `input` order when searching.
+
+Disable this to improve performance if you don't care about the order.
 
 
 ## Related
