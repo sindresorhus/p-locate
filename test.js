@@ -35,7 +35,7 @@ test('returns `undefined` when nothing could be found', async t => {
 	t.is((await m([1, 2, 3], () => false)), undefined);
 });
 
-// test('rejected return value in `tester` rejects the promise', async t => {
-// 	const fixtureErr = new Error('fixture');
-// 	await t.throws(m([1, 2, 3], () => Promise.reject(fixtureErr)), fixtureErr.message);
-// });
+test('rejected return value in `tester` rejects the promise', async t => {
+	const fixtureErr = new Error('fixture');
+	await t.throws(m([1, 2, 3], () => Promise.reject(fixtureErr)), fixtureErr.message);
+});

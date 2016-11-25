@@ -20,15 +20,12 @@ module.exports = (iterable, tester, opts) => {
 	const limit = pLimit(opts.concurrency);
 
 	// start all the promises concurrently with optional limit
-	const items = Array.from(iterable).map(el => {
-		return [el, limit(() => Promise.resolve(el).then(tester))];
-	});
+	const items = Array.from(iterable).map(el => [el, limit(() => Promise.resolve(el).then(tester))]);
 
 	// check the promises either serially or concurrently
-	const ret = opts.preserveOrder ?
-		items.reduce((p, el) => p.then(() => finder(el)), Promise.resolve()) :
-		Promise.all(items.map(el => finder(el)));
+	const checkLimit = pLimit(opts.preserveOrder ? 1 : Infinity);
 
-	return ret.then(() => {})
-		.catch(err => err instanceof EndError ? (err.value) : Promise.reject(err));
+	return Promise.all(items.map(el => checkLimit(() => finder(el))))
+		.then(() => {})
+		.catch(err => err instanceof EndError ? err.value : Promise.reject(err));
 };

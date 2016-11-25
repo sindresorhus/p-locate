@@ -45,8 +45,6 @@ Returns a `Promise` that is fulfilled when `tester` resolves to `true` or the it
 
 Type: `Iterable<Promise|any>`
 
-Set `{concurrency: 1}` to preserve the search order.
-
 #### tester(element)
 
 Type: `Function`
