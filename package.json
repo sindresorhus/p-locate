@@ -1,6 +1,6 @@
 {
   "name": "p-locate",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Get the first fulfilled promise that satisfies the provided testing function",
   "license": "MIT",
   "repository": "sindresorhus/p-locate",
