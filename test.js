@@ -2,13 +2,13 @@ import {serial as test} from 'ava';
 import delay from 'delay';
 import inRange from 'in-range';
 import timeSpan from 'time-span';
-import m from './';
+import m from '.';
 
 const input = [
 	[1, 300],
 	[2, 400],
 	[3, 200],
-	Promise.resolve([4, 100]) // ensures promises work in the input
+	Promise.resolve([4, 100]) // Ensures promises work in the input
 ];
 
 const tester = ([val, ms]) => delay(ms).then(() => val === 2 || val === 3);
