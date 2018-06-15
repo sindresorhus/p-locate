@@ -11,7 +11,10 @@ const input = [
 	Promise.resolve([4, 100]) // Ensures promises work in the input
 ];
 
-const tester = ([val, ms]) => delay(ms).then(() => val === 2 || val === 3);
+const tester = async ([value, ms]) => {
+	await delay(ms);
+	return value === 2 || value === 3;
+};
 
 test('main', async t => {
 	const end = timeSpan();
