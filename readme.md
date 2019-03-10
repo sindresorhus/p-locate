@@ -47,11 +47,13 @@ Returns a `Promise` that is fulfilled when `tester` resolves to `true` or the it
 
 Type: `Iterable<Promise|any>`
 
+An iterable of promises/values to test.
+
 #### tester(element)
 
 Type: `Function`
 
-Expected to return a `Promise<boolean>` or boolean.
+This function will receive resolved values from `input` and is expected to return a `Promise<boolean>` or `boolean`.
 
 #### options
 
