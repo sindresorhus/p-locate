@@ -45,7 +45,7 @@ Returns a `Promise` that is fulfilled when `tester` resolves to `true` or the it
 
 #### input
 
-Type: `Iterable<Promise|any>`
+Type: `Iterable<Promise | unknown>`
 
 An iterable of promises/values to test.
 
