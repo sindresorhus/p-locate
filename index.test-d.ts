@@ -1,5 +1,5 @@
-import {expectType} from 'tsd-check';
-import pLocate from '.';
+import {expectType} from 'tsd';
+import pLocate = require('.');
 
 const files = new Set([
 	'unicorn.png',
