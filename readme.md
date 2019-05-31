@@ -39,7 +39,7 @@ const files = [
 
 ## API
 
-### pLocate(input, tester, [options])
+### pLocate(input, tester, options?)
 
 Returns a `Promise` that is fulfilled when `tester` resolves to `true` or the iterable is done, or rejects if any of the promises reject. The fulfilled value is the current iterable value or `undefined` if `tester` never resolved to `true`.
 
@@ -57,7 +57,7 @@ This function will receive resolved values from `input` and is expected to retur
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### concurrency
 
@@ -85,6 +85,14 @@ Disable this to improve performance if you don't care about the order.
 - [More…](https://github.com/sindresorhus/promise-fun)
 
 
-## License
+---
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+<div align="center">
+	<b>
+		<a href="https://tidelift.com/subscription/pkg/npm-p-locate?utm_source=npm-p-locate&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
+	</b>
+	<br>
+	<sub>
+		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
+	</sub>
+</div>
