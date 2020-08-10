@@ -1,16 +1,14 @@
-# p-locate [![Build Status](https://travis-ci.org/sindresorhus/p-locate.svg?branch=master)](https://travis-ci.org/sindresorhus/p-locate)
+# p-locate [![Build Status](https://travis-ci.com/sindresorhus/p-locate.svg?branch=master)](https://travis-ci.com/github/sindresorhus/p-locate)
 
 > Get the first fulfilled promise that satisfies the provided testing function
 
 Think of it like an async version of [`Array#find`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/find).
-
 
 ## Install
 
 ```
 $ npm install p-locate
 ```
-
 
 ## Usage
 
@@ -36,7 +34,6 @@ const files = [
 
 *The above is just an example. Use [`locate-path`](https://github.com/sindresorhus/locate-path) if you need this.*
 
-
 ## API
 
 ### pLocate(input, tester, options?)
@@ -61,21 +58,20 @@ Type: `object`
 
 ##### concurrency
 
-Type: `number`<br>
-Default: `Infinity`<br>
+Type: `number`\
+Default: `Infinity`\
 Minimum: `1`
 
 Number of concurrently pending promises returned by `tester`.
 
 ##### preserveOrder
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Preserve `input` order when searching.
 
 Disable this to improve performance if you don't care about the order.
-
 
 ## Related
 
@@ -83,7 +79,6 @@ Disable this to improve performance if you don't care about the order.
 - [p-filter](https://github.com/sindresorhus/p-filter) - Filter promises concurrently
 - [p-any](https://github.com/sindresorhus/p-any) - Wait for any promise to be fulfilled
 - [More…](https://github.com/sindresorhus/promise-fun)
-
 
 ---
 
