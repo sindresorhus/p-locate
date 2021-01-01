@@ -1,4 +1,4 @@
-# p-locate [![Build Status](https://travis-ci.com/sindresorhus/p-locate.svg?branch=master)](https://travis-ci.com/github/sindresorhus/p-locate)
+# p-locate
 
 > Get the first fulfilled promise that satisfies the provided testing function
 
