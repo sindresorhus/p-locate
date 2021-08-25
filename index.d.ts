@@ -1,21 +1,21 @@
-declare namespace pLocate {
-	interface Options {
-		/**
-		Number of concurrently pending promises returned by `tester`. Minimum: `1`.
+export interface Options {
+	/**
+	The number of concurrently pending promises returned by `tester`.
 
-		@default Infinity
-		*/
-		readonly concurrency?: number;
+	Minimum: `1`
 
-		/**
-		Preserve `input` order when searching.
+	@default Infinity
+	*/
+	readonly concurrency?: number;
 
-		Disable this to improve performance if you don't care about the order.
+	/**
+	Preserve `input` order when searching.
 
-		@default true
-		*/
-		readonly preserveOrder?: boolean;
-	}
+	Disable this to improve performance if you don't care about the order.
+
+	@default true
+	*/
+	readonly preserveOrder?: boolean;
 }
 
 /**
@@ -27,8 +27,8 @@ Get the first fulfilled promise that satisfies the provided testing function.
 
 @example
 ```
-import pathExists = require('path-exists');
-import pLocate = require('p-locate');
+import {pathExists} from 'path-exists';
+import pLocate from 'p-locate';
 
 const files = [
 	'unicorn.png',
@@ -36,18 +36,14 @@ const files = [
 	'pony.png'
 ];
 
-(async () => {
-	const foundPath = await pLocate(files, file => pathExists(file));
+const foundPath = await pLocate(files, file => pathExists(file));
 
-	console.log(foundPath);
-	//=> 'rainbow'
-})();
+console.log(foundPath);
+//=> 'rainbow'
 ```
 */
-declare function pLocate<ValueType>(
+export default function pLocate<ValueType>(
 	input: Iterable<PromiseLike<ValueType> | ValueType>,
 	tester: (element: ValueType) => PromiseLike<boolean> | boolean,
-	options?: pLocate.Options
+	options?: Options
 ): Promise<ValueType | undefined>;
-
-export = pLocate;

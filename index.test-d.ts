@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import {expectType} from 'tsd';
-import pLocate = require('.');
+import pLocate from './index.js';
 
 const files = new Set([
 	'unicorn.png',
 	'rainbow.png',
-	Promise.resolve('pony.png')
+	Promise.resolve('pony.png'),
 ]);
 
 pLocate(files, file => {

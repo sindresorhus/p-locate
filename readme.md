@@ -15,8 +15,8 @@ $ npm install p-locate
 Here we find the first file that exists on disk, in array order.
 
 ```js
-const pathExists = require('path-exists');
-const pLocate = require('p-locate');
+import {pathExists} from 'path-exists';
+import pLocate from 'p-locate';
 
 const files = [
 	'unicorn.png',
@@ -24,12 +24,10 @@ const files = [
 	'pony.png'
 ];
 
-(async () => {
-	const foundPath = await pLocate(files, file => pathExists(file));
+const foundPath = await pLocate(files, file => pathExists(file));
 
-	console.log(foundPath);
-	//=> 'rainbow'
-})();
+console.log(foundPath);
+//=> 'rainbow'
 ```
 
 *The above is just an example. Use [`locate-path`](https://github.com/sindresorhus/locate-path) if you need this.*
@@ -62,7 +60,7 @@ Type: `number`\
 Default: `Infinity`\
 Minimum: `1`
 
-Number of concurrently pending promises returned by `tester`.
+The number of concurrently pending promises returned by `tester`.
 
 ##### preserveOrder
 
