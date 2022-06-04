@@ -27,7 +27,7 @@ const files = [
 const foundPath = await pLocate(files, file => pathExists(file));
 
 console.log(foundPath);
-//=> 'rainbow'
+//=> 'rainbow.png'
 ```
 
 *The above is just an example. Use [`locate-path`](https://github.com/sindresorhus/locate-path) if you need this.*

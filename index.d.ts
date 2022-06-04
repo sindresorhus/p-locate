@@ -39,7 +39,7 @@ const files = [
 const foundPath = await pLocate(files, file => pathExists(file));
 
 console.log(foundPath);
-//=> 'rainbow'
+//=> 'rainbow.png'
 ```
 */
 export default function pLocate<ValueType>(
