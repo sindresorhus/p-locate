@@ -8,18 +8,16 @@ const files = new Set([
 	Promise.resolve('pony.png'),
 ]);
 
-pLocate(files, file => {
+const foundPath1 = await pLocate(files, file => {
 	expectType<string>(file);
 	return file === 'rainbow.png';
-}).then(foundPath => {
-	expectType<string | undefined>(foundPath);
 });
-pLocate(files, async file => {
+expectType<string | undefined>(foundPath1);
+const foundPath2 = await pLocate(files, async file => {
 	expectType<string>(file);
 	return file === 'rainbow.png';
-}).then(foundPath => {
-	expectType<string | undefined>(foundPath);
 });
+expectType<string | undefined>(foundPath2);
 
 pLocate(files, () => true, {concurrency: 2});
 pLocate(files, () => true, {preserveOrder: false});

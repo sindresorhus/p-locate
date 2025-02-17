@@ -1,4 +1,4 @@
-export interface Options {
+export type Options = {
 	/**
 	The number of concurrently pending promises returned by `tester`.
 
@@ -16,7 +16,7 @@ export interface Options {
 	@default true
 	*/
 	readonly preserveOrder?: boolean;
-}
+};
 
 /**
 Get the first fulfilled promise that satisfies the provided testing function.

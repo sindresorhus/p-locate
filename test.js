@@ -18,19 +18,22 @@ const tester = async ([value, ms]) => {
 
 test.serial('main', async t => {
 	const end = timeSpan();
-	t.is((await pLocate(input, tester))[0], 2);
+	const [result] = await pLocate(input, tester);
+	t.is(result, 2);
 	t.true(inRange(end(), {start: 370, end: 450}), 'should be time of item `2`');
 });
 
 test.serial('option {preserveOrder:false}', async t => {
 	const end = timeSpan();
-	t.is((await pLocate(input, tester, {preserveOrder: false}))[0], 3);
+	const [result] = await pLocate(input, tester, {preserveOrder: false});
+	t.is(result, 3);
 	t.true(inRange(end(), {start: 170, end: 250}), 'should be time of item `3`');
 });
 
 test.serial('option {concurrency:1}', async t => {
 	const end = timeSpan();
-	t.is((await pLocate(input, tester, {concurrency: 1}))[0], 2);
+	const [result] = await pLocate(input, tester, {concurrency: 1});
+	t.is(result, 2);
 	t.true(inRange(end(), {start: 670, end: 750}), 'should be time of items `1` and `2`, since they run serially');
 });
 
