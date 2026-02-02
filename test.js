@@ -51,3 +51,116 @@ test.serial('rejected return value in `tester` rejects the promise', async t => 
 		},
 	);
 });
+
+test.serial('async iterable', async t => {
+	async function * generate() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	const result = await pLocate(generate(), element => element === 2);
+	t.is(result, 2);
+});
+
+test.serial('async iterable - yields promises', async t => {
+	const asyncIterable = {
+		[Symbol.asyncIterator]() {
+			const values = [1, 2, 3].map(value => Promise.resolve(value));
+			let index = 0;
+
+			return {
+				next() {
+					if (index >= values.length) {
+						return Promise.resolve({done: true});
+					}
+
+					const value = values[index];
+					index++;
+
+					return Promise.resolve({value, done: false});
+				},
+			};
+		},
+	};
+
+	const result = await pLocate(asyncIterable, element => element === 2);
+	t.is(result, 2);
+});
+
+test.serial('async iterable - returns undefined when nothing could be found', async t => {
+	async function * generate() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	const result = await pLocate(generate(), () => false);
+	t.is(result, undefined);
+});
+
+test.serial('async iterable - async tester', async t => {
+	async function * generate() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	const result = await pLocate(generate(), async element => {
+		await delay(50);
+		return element === 3;
+	});
+	t.is(result, 3);
+});
+
+test.serial('async iterable - only matches strict true', async t => {
+	async function * generate() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	const result = await pLocate(generate(), element => element === 2 ? 1 : false);
+	t.is(result, undefined);
+});
+
+test.serial('async iterable - stops iterating after finding a match', async t => {
+	let count = 0;
+
+	async function * generate() {
+		yield 1;
+		count++;
+		yield 2;
+		count++;
+		yield 3;
+		count++;
+	}
+
+	const result = await pLocate(generate(), element => element === 2);
+	t.is(result, 2);
+	t.is(count, 1);
+});
+
+test.serial('async iterable - rejected tester rejects the promise', async t => {
+	const fixtureError = new Error('fixture');
+
+	async function * generate() {
+		yield 1;
+	}
+
+	await t.throwsAsync(
+		pLocate(generate(), () => Promise.reject(fixtureError)),
+		{
+			message: fixtureError.message,
+		},
+	);
+});
+
+test.serial('async iterable - empty', async t => {
+	async function * generate() {
+		// Empty
+	}
+
+	const result = await pLocate(generate(), () => true);
+	t.is(result, undefined);
+});

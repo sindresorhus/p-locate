@@ -40,9 +40,11 @@ Returns a `Promise` that is fulfilled when `tester` resolves to `true` or the it
 
 #### input
 
-Type: `Iterable<Promise | unknown>`
+Type: `Iterable<Promise | unknown> | AsyncIterable<unknown>`
 
-An iterable of promises/values to test.
+An iterable or async iterable of promises/values to test.
+
+When an `AsyncIterable` is given, it is iterated serially and the `concurrency` and `preserveOrder` options are not applicable.
 
 #### tester(element)
 

@@ -28,6 +28,17 @@ export default async function pLocate(
 		preserveOrder = true,
 	} = {},
 ) {
+	if (iterable[Symbol.asyncIterator]) {
+		for await (const element of iterable) {
+			const resolvedElement = await element;
+			if (await tester(resolvedElement) === true) {
+				return resolvedElement;
+			}
+		}
+
+		return;
+	}
+
 	const limit = pLimit(concurrency);
 
 	// Start all the promises concurrently with optional limit.
